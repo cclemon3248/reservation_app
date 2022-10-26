@@ -25,6 +25,7 @@ gem "net-smtp"
 gem 'bcrypt'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'ransack'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
