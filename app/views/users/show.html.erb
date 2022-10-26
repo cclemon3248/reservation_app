@@ -1,0 +1,18 @@
+<% if flash[:notice] %>
+  <p class="notice"><%= flash[:notice] %></p>
+<% end %>
+
+<h5>アカウント</h5>
+<p>メールアドレス</p>
+<p><%= @user.email %></p>
+<p>パスワード</p>
+<p>********</p>
+ 
+<%= link_to "編集", edit_user_path(@user.id) %>
+
+<p>
+  <strong>Image:</strong>
+  <% if @user.image.url %>
+    <%= image_tag @user.image.url %>
+  <% end %>
+</p>

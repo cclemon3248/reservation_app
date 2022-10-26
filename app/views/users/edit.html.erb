@@ -1,0 +1,23 @@
+
+<%= form_with model: @user, local: true do |f| %>
+  <p>アカウント編集</p>
+  <%= render "shared/error", object: @user %>
+  <div>
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+  </div>
+  <div>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+  <div>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
+  </div>
+  <div>
+    <%= f.label :current_password %>
+    <%= f.password_field :current_password %>
+  </div>
+  <%= f.submit "更新" %>
+  <%= link_to "戻る", user_path(@user.id) %>
+<% end %>

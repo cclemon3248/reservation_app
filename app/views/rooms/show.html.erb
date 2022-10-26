@@ -1,0 +1,27 @@
+<p class="notice"><%= flash[:notice] %></p>
+
+<div><%= image_tag @room.image.url %></div>
+
+<%= @room.name %>
+<%= @room.content %>
+<%= @room.price %>
+<%= @room.address %>
+
+<%= form_with(scope: :reserve, url: new_reserf_path, method: :get, local: true) do |f| %>
+  <p>¥<%= @room.price %></p>
+  <div>
+    <%= f.label :start %>
+    <%= f.date_field :start %>
+  </div>
+  <div>
+    <%= f.label :end %>
+    <%= f.date_field :end %>
+  </div>
+  <div>
+    <%= f.label :people %>
+    <%= f.number_field :people %>
+  </div>
+  <%= hidden_field_tag :room_id, @room.id %>
+
+  <%= f.submit "予約する" %>
+<% end %>

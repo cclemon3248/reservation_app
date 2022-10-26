@@ -1,0 +1,27 @@
+<%= form_with model: @reserve, local: true do |f| %>
+  <p>予約内容確認</p>
+  <p>¥<%= @room.price %>/ 日</p>
+  <div>
+    <%= f.label :start %>
+    <%= f.text_field :start, readonly: true %>
+  </div>
+  <div>
+    <%= f.label :end %>
+    <%= f.text_field :end, readonly: true %>
+  </div>
+  <% day = ((@reserve.end - @reserve.start) / 86400).floor %>
+  <% number = @reserve.people %>
+  
+  <p>使用日数 : <%= day %>日</p>
+  <p>人数 : <%= number %>人</p>
+  <div>
+    <%= f.label :price %>
+    <%= f.text_field :price, value: @room.price * day * number, readonly: true %>
+  </div>
+  <%= hidden_field_tag :room_id, @room.id %>
+  <%= hidden_field_tag :people, number %>
+
+  <p>上記内容でよろしければ「予約を確定」を押してください</p>
+  <%= f.submit "予約を確認" %>
+  <%= link_to "ルーム詳細に戻る", request.referrer %>
+<% end %>

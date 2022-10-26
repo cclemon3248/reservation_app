@@ -1,0 +1,21 @@
+<%= form_with(scope: :profile, url: user_profile_path, method: :patch, local: true) do |f| %>
+  <p>プロフィール</p>
+  <% if @user.image.url %>
+  <%= image_tag @user.image.url %>
+  <% end %>
+  <%= render "shared/error", object: @user %>
+  <div>
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+  </div>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :content %>
+    <%= f.text_field :content %>
+  </div>
+
+  <%= f.submit "更新" %>
+<% end %>

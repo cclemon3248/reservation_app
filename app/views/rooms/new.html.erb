@@ -1,0 +1,25 @@
+<%= form_with model: @room, local: true do |f| %>
+  <p>ルーム情報登録</p>
+
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :content %>
+    <%= f.text_field :content %>
+  </div>
+  <div>
+    <%= f.label :price %>
+    <%= f.text_field :price %>
+  </div>
+  <div>
+    <%= f.label :address %>
+    <%= f.text_field :address %>
+  </div>
+  <div>
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+  </div>
+  <%= f.submit "登録" %>
+<% end %>

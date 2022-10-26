@@ -11,6 +11,25 @@
   </head>
 
   <body>
+    <header>
+    </header>
+    <% flash.each do |key, value| %>
+      <%= content_tag(:div, value, class: "#{key}") %>
+      <% end %>
+      <% if logged_in? %>
+        ログイン中
+        <%= link_to "Logout", session_path(current_user.id), method: :delete %>
+        <%= link_to "ルーム登録", new_room_path %>
+        <%= link_to "予約済みルーム一覧", reserves_path %>
+        <%= link_to "登録済みルーム一覧", post_rooms_path %>
+        <%= link_to "設定", user_path(current_user.id) %>
+      <% else %>
+        <%= link_to "ログイン", new_session_path %>
+        <%= link_to "登録する", new_user_path %>
+      <% end %>
     <%= yield %>
+    <footer>
+      <p>© 2020 POTEPAN.INC.</p>
+    </footer>
   </body>
 </html>
