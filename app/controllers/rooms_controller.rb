@@ -1,6 +1,11 @@
 class RoomsController < ApplicationController
+  
   def index
     @rooms = Room.all
+  end
+  
+  def search
+    @rooms = @q.result
   end
 
   def post

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :rooms do
     collection do
       get :post
+      get :search
     end
   end
   resources :reserves

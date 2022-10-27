@@ -1,0 +1,24 @@
+<h1>検索結果：<%= @rooms.count %>件</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ルーム画像</th>
+      <th>ルーム名</th>
+      <th>住所</th>
+      <th>料金</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @rooms.each do |room| %>
+      <tr>
+        <td><%= image_tag room.image.url %></td>
+        <td>
+          <%= link_to room.name, room_path(room.id) %>
+        </td>
+        <td><%= room.address %></td>
+        <td>¥<%= room.price %></td>
+      </tr>
+    <% end %>
+  </tbody>  
+</table>

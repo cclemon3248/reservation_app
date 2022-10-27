@@ -1,0 +1,13 @@
+<p>Potepan Shareでまだ体験したことのない旅をしよう</p>
+<%= search_form_for @q, url: search_rooms_path do |f| %>
+  <%= f.label :address, "エリア" %>
+  <%= f.search_field :address_cont %>
+  <%= f.submit "探す" %>
+<% end %>
+
+<h1>おすすめのエリア</h1>
+
+<%= image_tag "img_tokyo.jpg" %>
+<%= image_tag "img_osaka.jpg" %>
+<%= image_tag "img_kyoto.jpg" %>
+<%= image_tag "img_sapporo.jpg" %>

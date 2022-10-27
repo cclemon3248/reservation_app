@@ -31,3 +31,10 @@ table , td, th {
 	border-collapse: collapse;
 }
 
+.d-none {
+  display: none!important;
+}
+
+.left-header {
+  display: flex;
+}

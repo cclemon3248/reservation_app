@@ -2,10 +2,9 @@
 
 <div><%= image_tag @room.image.url %></div>
 
-<%= @room.name %>
-<%= @room.content %>
-<%= @room.price %>
-<%= @room.address %>
+<p><%= @room.name %></p>
+<p><%= @room.content %></p>
+<p><%= @room.address %></p>
 
 <%= form_with(scope: :reserve, url: new_reserf_path, method: :get, local: true) do |f| %>
   <p>¥<%= @room.price %></p>
