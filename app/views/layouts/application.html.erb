@@ -8,6 +8,7 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel ="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
   </head>
 
   <body>
@@ -24,7 +25,7 @@
       <% if logged_in? %>
         <div class="right-header-top">
           <div class="image-header" onclick=eventA();>
-            <%= image_tag "333.jpg", class: "header-icon" %>
+            <%= image_tag @image.image.url, class: "header-icon" %>
           </div>
           <div class="header-font">水原</div>
         </div>
@@ -38,8 +39,8 @@
           </ul>
         </div>
       <% else %>
-        <%= link_to "ログイン", new_session_path %>
-        <%= link_to "登録する", new_user_path %>
+        <%= link_to "ログイン", new_session_path, class: "btn btn-primary" %>
+        <%= link_to "登録する", new_user_path, class: "btn btn-dark"%>
       <% end %>
 
     </div>
@@ -47,18 +48,9 @@
     <% flash.each do |key, value| %>
       <%= content_tag(:div, value, class: "#{key}") %>
       <% end %>
-      <% if logged_in? %>
-        ログイン中
-        <%= link_to "ログアウト", session_path(current_user.id), method: :delete %>
-        <%= link_to "ルーム登録", new_room_path %>
-        <%= link_to "予約済みルーム一覧", reserves_path %>
-        <%= link_to "登録済みルーム一覧", post_rooms_path %>
-        <%= link_to "設定", user_path(current_user.id) %>
-      <% else %>
-        <%= link_to "ログイン", new_session_path %>
-        <%= link_to "登録する", new_user_path %>
-      <% end %>
-    <%= yield %>
+    <div class="container">
+      <%= yield %>
+    </div>
     <footer>
       <p>© 2020 POTEPAN.INC.</p>
     </footer>

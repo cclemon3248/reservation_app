@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   before_action :login_required
   before_action :set_q
+  before_action :header_image
 
   def top
   end
@@ -15,5 +16,9 @@ class ApplicationController < ActionController::Base
 
   def set_q
     @q = Room.ransack(params[:q])
+  end
+
+  def header_image
+    @image = User.find(current_user.id) if logged_in?
   end
 end
