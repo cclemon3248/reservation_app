@@ -84,3 +84,13 @@ ul a {
 .header-nav-menu-none {
   display: none;
 }
+
+.fa {
+  width: 200px;
+  padding: 12px 12px;
+  border-radius: 2px;
+}
+
+.room_search {
+  margin: auto 0;
+}
