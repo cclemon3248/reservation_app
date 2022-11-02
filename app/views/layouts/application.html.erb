@@ -29,7 +29,7 @@
           </div>
           <div class="header-font">水原</div>
         </div>
-        <div id="header-nav-menu" class="header-nav-menu-none">
+        <div>
           <ul>
             <li><%= link_to "ルーム登録", new_room_path %></li>
             <li><%= link_to "予約済みルーム一覧", reserves_path %></li>
@@ -38,6 +38,7 @@
             <li><%= link_to "ログアウト", session_path(current_user.id), method: :delete %></li>
           </ul>
         </div>
+
       <% else %>
         <%= link_to "ログイン", new_session_path, class: "btn btn-primary" %>
         <%= link_to "登録する", new_user_path, class: "btn btn-dark"%>
@@ -48,9 +49,9 @@
     <% flash.each do |key, value| %>
       <%= content_tag(:div, value, class: "#{key}") %>
       <% end %>
-    <div class="container">
+
       <%= yield %>
-    </div>
+
     <footer>
       <p>© 2020 POTEPAN.INC.</p>
     </footer>

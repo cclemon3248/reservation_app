@@ -1,25 +1,60 @@
-<%= form_with model: @room, local: true do |f| %>
-  <p>ルーム情報登録</p>
+<div class="row">
+  <div class="col-2">
+    <ul class="active-ul">
+      <li class="active">
+        <a href="">基本情報</a>
+      </li>
+    </ul>
+  </div>
+  
+  <div class="col-10 room-view">
+    <div class="room-view-box">
+      <%= form_with model: @room, local: true do |f| %>
+        
+        <div class="update-content">
+          <h5>ルーム情報登録</h5>
+        </div>
+        
+        <div class="update-content">
+          <div class="row">
+            <%= f.label :name, "ルーム名", class: "col-3 required-a" %>
+            <%= f.text_field :name, placeholder: "ルーム名を入力", class: "col-9 form-control" %>
+          </div>
+        </div>
 
-  <div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+        <div class="update-content">
+          <div class="row">
+            <%= f.label :content, "ルーム紹介", class: "col-3 required-a" %>
+            <%= f.text_area :content, placeholder: "ルーム説明を入力", class: "col-9 form-control" %>
+          </div>
+        </div>
+
+        <div class="update-content">
+          <div class="row">
+            <%= f.label :price, "料金", class: "col-3 required-a" %>
+            <%= f.number_field :price, placeholder: "1日あたりの料金を入力", class: "col-9 form-control" %>
+          </div>
+        </div>
+
+        <div class="update-content">
+          <div class="row">
+            <%= f.label :address, "住所", class: "col-3 required-a" %>
+            <%= f.text_field :address, placeholder: "住所を入力", class: "col-9 form-control" %>
+          </div>
+        </div>
+
+        <div class="update-content">
+          <div class="row">
+            <%= f.label :image, "ルーム画像", class: "col-3 required-a" %>
+            <%= f.file_field :image, class: "col-9" %>
+          </div>
+        </div>
+
+        <div class="update-content">
+          <%= f.submit "登録", class: "col-md-2 btn btn-primary" %>
+        </div>
+    
+      <% end %>
+    </div>
   </div>
-  <div>
-    <%= f.label :content %>
-    <%= f.text_field :content %>
-  </div>
-  <div>
-    <%= f.label :price %>
-    <%= f.text_field :price %>
-  </div>
-  <div>
-    <%= f.label :address %>
-    <%= f.text_field :address %>
-  </div>
-  <div>
-    <%= f.label :image %>
-    <%= f.file_field :image %>
-  </div>
-  <%= f.submit "登録" %>
-<% end %>
+</div>
