@@ -1,3 +1,7 @@
+
+
+
+
 <div class="row user-nav">
   <div class="col-2 room-nav">
     <ul>
@@ -28,14 +32,22 @@
         <div class="update-content">
           <div class="row">
             <%= f.label :name, "名前", class: "col-3 required-a" %>
-            <%= f.text_field :name, placeholder: "名前を入力", class: "col-9 form-control" %>
+            <% if @user.name.blank? %>
+              <div class="field_with_errors"><%= f.text_field :name, placeholder: "名前を入力", class: "col-9 form-control" %></div>
+            <% else %>
+              <%= f.text_field :name, placeholder: "名前を入力", class: "col-9 form-control" %>
+            <% end %>
           </div>
         </div>
 
         <div class="update-content">
           <div class="row">
             <%= f.label :content, "自己紹介", class: "col-3 required-a" %>
-            <%= f.text_area :content, placeholder: "自己紹介を入力", class: "col-9 form-control" %>
+            <% if @user.content.blank? %>
+              <div class="field_with_errors"><%= f.text_area :content, placeholder: "自己紹介を入力", class: "col-9 form-control" %></div>
+            <% else %>
+              <%= f.text_area :content, placeholder: "自己紹介を入力", class: "col-9 form-control" %>
+            <% end %>
           </div>
         </div>
 

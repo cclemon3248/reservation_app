@@ -4,15 +4,19 @@ class ReservesController < ApplicationController
   end
 
   def new
+    @room = Room.find(params[:room_id])
+    @reserve = Reserve.new(reserve_params)
     if (params[:reserve][:start] == "") || (params[:reserve][:end] == "") || (params[:reserve][:people] == "")
+      flash[:alert] = "人数は必須です"
+      redirect_to request.referrer
+    elsif @reserve.end < Date.today
+      flash[:alert] = "過去の日付は無効です"
       redirect_to request.referrer
     elsif params[:reserve][:start] > params[:reserve][:end]
       flash[:alert] = "終了日は開始日より後にしてください"
       redirect_to request.referrer
     end
 
-    @room = Room.find(params[:room_id])
-    @reserve = Reserve.new(reserve_params)
   end
 
   def create

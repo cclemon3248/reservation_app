@@ -1,9 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
-  before_action :login_required
   before_action :set_q
   before_action :header_image
+  before_action :login_required
+  skip_before_action :login_required, only: [:top]
 
   def top
   end

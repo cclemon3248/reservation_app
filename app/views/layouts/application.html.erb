@@ -27,11 +27,13 @@
           <div class="image-header" onclick=eventA();>
             <%= image_tag @image.image.url, class: "header-icon" %>
           </div>
-          <div class="header-font">水原</div>
+          <div class="header-font"><%= current_user.name %></div>
         </div>
       <% else %>
-        <%= link_to "ログイン", new_session_path, class: "btn btn-primary mx-3" %>
-        <%= link_to "登録する", new_user_path, class: "btn btn-dark"%>
+        <div class="right-header-login">
+          <%= link_to "ログイン", new_session_path, class: "btn btn-primary mx-3" %>
+          <%= link_to "登録する", new_user_path, class: "btn btn-dark"%>
+        </div>
       <% end %>
 
     </div>
