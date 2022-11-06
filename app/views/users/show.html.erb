@@ -1,18 +1,36 @@
-<% if flash[:notice] %>
-  <p class="notice"><%= flash[:notice] %></p>
-<% end %>
+<div class="row user-nav">
+  <div class="col-2 room-nav">
+    <ul>
+      <li class="active active-place"><%= link_to "アカウント", user_path(current_user.id), class: "active-font" %></li>
+      <li class="active"><%= link_to "プロフィール", user_profile_path(current_user.id) %></li>
+    </ul>
+  </div>
+  
+  <div class="col-10 room-view">
+    <div class="room-view-box">
 
-<h5>アカウント</h5>
-<p>メールアドレス</p>
-<p><%= @user.email %></p>
-<p>パスワード</p>
-<p>********</p>
- 
-<%= link_to "編集", edit_user_path(@user.id) %>
-
-<p>
-  <strong>Image:</strong>
-  <% if @user.image.url %>
-    <%= image_tag @user.image.url %>
-  <% end %>
-</p>
+        
+      <div class="update-content">
+        <h5>アカウント</h5>
+      </div>
+      
+      <div class="update-content">
+        <div class="row">
+          <div class="col-3 account-font">メールアドレス</div>
+          <div class="col-9"><%= @user.email %></div>
+        </div>
+      </div>   
+      
+      <div class="update-content">
+        <div class="row">
+          <div class="col-3 account-font">パスワード</div>
+          <div class="col-9">********</div>
+        </div>
+      </div>
+      
+      <div class="update-content">
+        <%= link_to "編集", edit_user_path(current_user.id), class: "col-md-2 btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+</div>

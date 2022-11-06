@@ -1,23 +1,27 @@
+<div class="container form">
+  <div class="edit-form">
 
-<%= form_with model: @user, local: true do |f| %>
-  <p>アカウント編集</p>
-  <%= render "shared/error", object: @user %>
-  <div>
-    <%= f.label :email %>
-    <%= f.email_field :email %>
+    <%= form_with model: @user, local: true do |f| %>
+      <%= render "shared/error", object: @user %>
+      <h2>アカウント編集</h2>
+      <div>
+        <div><%= f.label :email, "メールアドレス", class: "edit-font" %></div>
+        <%= f.email_field :email, class: "form-control" %>
+      </div>
+      <div>
+        <div><%= f.label :password, "変更後パスワード（変更する場合のみ入力）", class: "edit-font" %></div>
+        <%= f.password_field :password, class: "form-control" %>
+      </div>
+      <div>
+        <div><%= f.label :password_confirmation, "パスワード確認用（変更する場合のみ入力）", class: "edit-font" %></div>
+        <%= f.password_field :password_confirmation, class: "form-control" %>
+      </div>
+      <div>
+        <div><%= f.label :current_password, "現在のパスワード", class: "edit-font" %></div>
+        <%= f.password_field :current_password, placeholder: "現在のパスワードを入力", class: "form-control" %>
+      </div>
+      <div><%= f.submit "更新", class: "form-control btn btn-primary" %></div>
+      <div><%= link_to "戻る", user_path(@user.id), class: "form-control text-decoration" %></div>
+    <% end %>
   </div>
-  <div>
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </div>
-  <div>
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-  </div>
-  <div>
-    <%= f.label :current_password %>
-    <%= f.password_field :current_password %>
-  </div>
-  <%= f.submit "更新" %>
-  <%= link_to "戻る", user_path(@user.id) %>
-<% end %>
+</div>

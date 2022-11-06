@@ -19,10 +19,13 @@ class RoomsController < ApplicationController
   def create
     @room = Room.new(room_params)
     @room.user_id = current_user.id
-    return render :new if @room.invalid?
-    @room.save
-    flash[:notice] = "Room was successfully created."
-    redirect_to room_path(@room.id)
+    # return render :new if @room.invalid?
+    if @room.save
+      flash[:notice] = "Room was successfully created."
+      redirect_to room_path(@room.id)
+    else
+      return render :new
+    end
   end
 
   def show

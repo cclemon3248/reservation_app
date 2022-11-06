@@ -1,24 +1,23 @@
-<h1>検索結果：<%= @rooms.count %>件</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>ルーム画像</th>
-      <th>ルーム名</th>
-      <th>住所</th>
-      <th>料金</th>
-    </tr>
-  </thead>
-  <tbody>
+<div class="reservations">
+  <h4 class="pb-4">検索結果：<%= @rooms.count %>件</h4>
+  
+  <div class="row">
+    
     <% @rooms.each do |room| %>
-      <tr>
-        <td><%= image_tag room.image.url %></td>
-        <td>
-          <%= link_to room.name, room_path(room.id) %>
-        </td>
-        <td><%= room.address %></td>
-        <td>¥<%= room.price %></td>
-      </tr>
+      <%= link_to room_path(room.id), class:"card-room" do %>
+      <div class="col-3 cards">
+        <div class="card">
+          <div class="image">
+            <%= image_tag room.image.url, class: "image-size" %>
+          </div>
+          <div class="room-profile">
+            <p class="profile-font"><%= room.name %></p>
+            <p class="profile-font2"><%= room.address %></p>
+            <p class="profile-font3"><%= room.price %></p>
+          </div>
+        </div>
+        <% end %>
+      </div>
     <% end %>
-  </tbody>  
-</table>
+  </div>
+</div>

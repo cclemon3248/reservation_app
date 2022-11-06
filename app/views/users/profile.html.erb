@@ -1,21 +1,48 @@
-<%= form_with(scope: :profile, url: user_profile_path, method: :patch, local: true) do |f| %>
-  <p>プロフィール</p>
-  <% if @user.image.url %>
-  <%= image_tag @user.image.url %>
-  <% end %>
-  <%= render "shared/error", object: @user %>
-  <div>
-    <%= f.label :image %>
-    <%= f.file_field :image %>
+<div class="row user-nav">
+  <div class="col-2 room-nav">
+    <ul>
+      <li class="active"><%= link_to "アカウント", user_path(current_user.id) %></li>
+      <li class="active active-place"><%= link_to "プロフィール", user_profile_path(current_user.id), class: "active-font" %></li>
+    </ul>
   </div>
-  <div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-  <div>
-    <%= f.label :content %>
-    <%= f.text_field :content %>
-  </div>
+  
+  <div class="col-10 room-view">
+    <div class="room-view-box">
+      <%= form_with(scope: :profile, url: user_profile_path, method: :patch, local: true) do |f| %>
+        
+        <div class="update-content">
+          <h5>プロフィール</h5>
+        </div>
+        
+        <div class="update-content">
+          <div class="center-icon"><%= image_tag @user.image.url, class: "icon-center" %></div>
+        </div>
 
-  <%= f.submit "更新" %>
-<% end %>
+        <div class="update-content">
+          <div class="row">
+            <%= f.label :image, "アイコン画像", class: "col-3 required-a" %>
+            <%= f.file_field :image, class: "col-9" %>
+          </div>
+        </div>
+
+        <div class="update-content">
+          <div class="row">
+            <%= f.label :name, "名前", class: "col-3 required-a" %>
+            <%= f.text_field :name, placeholder: "名前を入力", class: "col-9 form-control" %>
+          </div>
+        </div>
+
+        <div class="update-content">
+          <div class="row">
+            <%= f.label :content, "自己紹介", class: "col-3 required-a" %>
+            <%= f.text_area :content, placeholder: "自己紹介を入力", class: "col-9 form-control" %>
+          </div>
+        </div>
+
+        <div class="update-content">
+          <%= f.submit "更新", class: "col-md-2 btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

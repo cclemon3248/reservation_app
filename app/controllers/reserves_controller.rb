@@ -4,6 +4,13 @@ class ReservesController < ApplicationController
   end
 
   def new
+    if (params[:reserve][:start] == "") || (params[:reserve][:end] == "") || (params[:reserve][:people] == "")
+      redirect_to request.referrer
+    elsif params[:reserve][:start] > params[:reserve][:end]
+      flash[:alert] = "終了日は開始日より後にしてください"
+      redirect_to request.referrer
+    end
+
     @room = Room.find(params[:room_id])
     @reserve = Reserve.new(reserve_params)
   end

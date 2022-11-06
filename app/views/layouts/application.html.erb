@@ -29,18 +29,8 @@
           </div>
           <div class="header-font">水原</div>
         </div>
-        <div>
-          <ul>
-            <li><%= link_to "ルーム登録", new_room_path %></li>
-            <li><%= link_to "予約済みルーム一覧", reserves_path %></li>
-            <li><%= link_to "登録済みルーム一覧", post_rooms_path %></li>
-            <li><%= link_to "設定", user_path(current_user.id) %></li>
-            <li><%= link_to "ログアウト", session_path(current_user.id), method: :delete %></li>
-          </ul>
-        </div>
-
       <% else %>
-        <%= link_to "ログイン", new_session_path, class: "btn btn-primary" %>
+        <%= link_to "ログイン", new_session_path, class: "btn btn-primary mx-3" %>
         <%= link_to "登録する", new_user_path, class: "btn btn-dark"%>
       <% end %>
 
@@ -48,10 +38,19 @@
     </header>
     <% flash.each do |key, value| %>
       <%= content_tag(:div, value, class: "#{key}") %>
-      <% end %>
-
+    <% end %>
+    <div class="top">
       <%= yield %>
-
+      <% if logged_in? %>
+      <ul id="header-nav-menu" class="header-nav-menu-none">
+        <li><%= link_to "ルーム登録", new_room_path %></li>
+        <li><%= link_to "予約済みルーム一覧", reserves_path %></li>
+        <li><%= link_to "登録済みルーム一覧", post_rooms_path %></li>
+        <li><%= link_to "設定", user_path(current_user.id) %></li>
+        <li><%= link_to "ログアウト", session_path(current_user.id), method: :delete %></li>
+      </ul>
+      <% end %>
+    </div>
     <footer>
       <p>© 2020 POTEPAN.INC.</p>
     </footer>

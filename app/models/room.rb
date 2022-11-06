@@ -6,6 +6,5 @@ class Room < ApplicationRecord
   validates :price,   presence: true
   validates :address, presence: true
   validates :image,   presence: true
-  validates :start, presence: true
   mount_uploader :image, ImageUploader
 end

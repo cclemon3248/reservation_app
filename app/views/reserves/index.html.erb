@@ -1,15 +1,7 @@
-<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-Dropdown link
-</a>
-<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-<a class="dropdown-item" href="#">Action</a>
-<a class="dropdown-item" href="#">Another action</a>
-<a class="dropdown-item" href="#">Something else here</a>
-</div>
+<div class="reservations user-nav">
+<h4 class="pb-4">予約済みルーム一覧</h1>
 
-<h1>予約済みルーム一覧</h1>
-
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>ルーム画像</th>
@@ -24,10 +16,10 @@ Dropdown link
   <tbody>
     <% @reserves.each do |reserve| %>
       <tr>
-        <td><%= image_tag reserve.room.image.url %></td>
-        <td><%= link_to reserve.room.name,  room_path(reserve.room.id) %></td>
+        <td class="image-td"><%= image_tag reserve.room.image.url, class: "reservations-image" %></td>
+        <td class="room-name"><%= link_to reserve.room.name,  room_path(reserve.room.id) %></td>
         <td><%= reserve.room.content %></td>
-        <td><%= reserve.price %></td>
+        <td class="reserve-price"><%= reserve.price %></td>
         <td><%= reserve.start %></td>
         <td><%= reserve.end %></td>
         <td><%= reserve.created_at %></td>
@@ -35,3 +27,4 @@ Dropdown link
     <% end %>  
   </tbody>
 </table>
+</div>

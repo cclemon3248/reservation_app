@@ -54,7 +54,7 @@ class UsersController < ApplicationController
     @user.current_password = current_user.password_digest
     if @user.update(profile_params)
       @user.current_password = nil
-      flash[:notice] = "ユーザーIDが「#{@user.id}」の情報を更新しました"
+      flash[:notice] = "Profile was successfully updated."
       redirect_to user_profile_path(@user.id)
     else
       @user.current_password = nil
