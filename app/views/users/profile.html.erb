@@ -19,13 +19,21 @@
         </div>
         
         <div class="update-content">
-          <div class="center-icon"><%= image_tag @user.image.url, class: "icon-center" %></div>
+          <% if @user.image.blank? %>
+            <div class="center-icon"><%= image_tag "default_icon.jpg", class: "icon-center" %></div>
+          <% else %>
+           <div class="center-icon"><%= image_tag @user.image.url, class: "icon-center" %></div>
+          <% end %>
         </div>
 
         <div class="update-content">
           <div class="row">
             <%= f.label :image, "アイコン画像", class: "col-3 required-a" %>
-            <%= f.file_field :image, class: "col-9" %>
+            <% if @user.image.blank? %>
+              <div class="field_with_errors"><%= f.file_field :image, class: "col-9" %></div>
+            <% else %>
+              <%= f.file_field :image, class: "col-9" %>
+            <% end %>
           </div>
         </div>
 

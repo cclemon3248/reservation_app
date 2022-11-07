@@ -25,8 +25,12 @@
       <% if logged_in? %>
         <div class="right-header-top">
           <div class="image-header" onclick=eventA();>
-            <%= image_tag @image.image.url, class: "header-icon" %>
-          </div>
+            <% if @image.image.blank? %>
+              <%= image_tag "default_icon.jpg", class: "header-icon", alt: "メニュ" %>
+            <% else %>
+              <%= image_tag @image.image.url, class: "header-icon", alt: "メニュ" %>
+            <% end %>
+         </div>
           <div class="header-font"><%= current_user.name %></div>
         </div>
       <% else %>
