@@ -1,0 +1,21 @@
+<div class="container device">
+  <div class="device_frame">
+    <p class="my-4">ログイン</p>
+    <%= form_with(scope: :session, url: sessions_path, local: true, class: "new-user") do |f| %>
+      <div class="form-row">
+        <div class="required-b col-2"></div>
+        <%= f.email_field :email, class: "form-control col-10", placeholder: "メールアドレス" %>
+      </div>
+      <div class="form-row">
+        <div class="required-b col-2"></div>
+        <%= f.password_field :password, class: "form-control col-10", placeholder: "パスワード" %>
+      </div>
+      <div>
+        <%= f.submit "ログイン", class: "form-control btn-primary my-4 " %>
+      </div>
+    <% end %>
+    <%= link_to "新しいアカウントを作成", new_user_path %>
+  </div>
+</div>
+
+

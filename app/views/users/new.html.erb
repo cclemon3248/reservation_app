@@ -1,0 +1,33 @@
+<div class="container device">
+  <div class="device_frame">
+    <p class="my-4">新しいアカウントを作成</p>
+    <%= form_with model: @user, local: true, class: "new-user" do |f| %>
+      <%= render "shared/error", object: @user %>
+      
+      <div class="form-row">
+        <div class="required-b col-2"></div>
+        <%= f.text_field :name, class: "form-control col-10", placeholder: "ユーザー名" %>
+      </div>
+      
+      <div class="form-row">
+        <div class="required-b col-2"></div>
+        <%= f.email_field :email, class: "form-control col-10", placeholder: "メールアドレス" %>
+      </div>
+      
+      <div class="form-row">
+        <div class="required-b col-2"></div>
+        <%= f.password_field :password, class: "form-control col-10", placeholder: "パスワード" %>
+      </div>
+      
+      <div class="form-row">
+        <div class="required-b col-2"></div>
+        <%= f.password_field :password_confirmation, class: "form-control col-10", placeholder: "パスワード確認" %>
+      </div>
+      
+      <div>
+        <%= f.submit "新しいアカウントを作成", class: "form-control btn-primary my-4 " %>
+      </div>
+    <% end %>
+    <%= link_to "すでにアカウントをお持ちの方はログイン", new_session_path %>
+  </div>
+</div>

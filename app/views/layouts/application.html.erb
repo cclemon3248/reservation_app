@@ -8,9 +8,70 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel ="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
   </head>
 
   <body>
-    <%= yield %>
+
+    <header>
+    <div class="left-header">
+      <%= link_to image_tag("logo.png"), "/" %>
+      <%= search_form_for @q, url: search_rooms_path do |f| %>
+        <%= f.search_field :address_cont, placeholder: "\uf3c5 エリア", class: "fa" %>
+        <%= f.search_field :name_or_content_cont, placeholder: "\uf002 キーワード", class: "fa" %>
+        <%= f.submit class: "d-none" %>
+      <% end %>
+    </div>
+    <div class="right-header">
+      <% if logged_in? %>
+        <div class="right-header-top">
+          <div class="image-header" onclick=eventA();>
+            <% if @image.image.blank? %>
+              <%= image_tag "default_icon.jpg", class: "header-icon", alt: "メニュ" %>
+            <% else %>
+              <%= image_tag @image.image.url, class: "header-icon", alt: "メニュ" %>
+            <% end %>
+         </div>
+          <div class="header-font"><%= current_user.name %></div>
+        </div>
+      <% else %>
+        <div class="right-header-login">
+          <%= link_to "ログイン", new_session_path, class: "btn btn-primary mx-3" %>
+          <%= link_to "登録する", new_user_path, class: "btn btn-dark"%>
+        </div>
+      <% end %>
+
+    </div>
+    </header>
+    <% flash.each do |key, value| %>
+      <%= content_tag(:div, value, class: "#{key}") %>
+    <% end %>
+    <div class="top">
+      <%= yield %>
+      12
+      <% if logged_in? %>
+      <ul id="header-nav-menu" class="header-nav-menu-none">
+        <li><%= link_to "ルーム登録", new_room_path %></li>
+        <li><%= link_to "予約済みルーム一覧", reserves_path %></li>
+        <li><%= link_to "登録済みルーム一覧", post_rooms_path %></li>
+        <li><%= link_to "設定", user_path(current_user.id) %></li>
+        <li><%= link_to "ログアウト", session_path(current_user.id), method: :delete %></li>
+      </ul>
+      <% end %>
+    </div>
+    <footer>
+      <p>© 2020 POTEPAN.INC.</p>
+    </footer>
   </body>
 </html>
+
+<script>
+  eventA = function() {
+    const testa = document.getElementById('header-nav-menu');
+    if (testa.classList.contains('header-nav-menu-none')) {
+      testa.classList.remove('header-nav-menu-none');
+    } else {
+      testa.classList.add('header-nav-menu-none');
+    }
+  }
+</script>

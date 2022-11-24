@@ -1,0 +1,68 @@
+
+
+
+
+<div class="row user-nav">
+  <div class="col-2 room-nav">
+    <ul>
+      <li class="active"><%= link_to "アカウント", user_path(current_user.id) %></li>
+      <li class="active active-place"><%= link_to "プロフィール", user_profile_path(current_user.id), class: "active-font" %></li>
+    </ul>
+  </div>
+  
+  <div class="col-10 room-view">
+    <div class="room-view-box">
+      <%= form_with(scope: :profile, url: user_profile_path, method: :patch, local: true) do |f| %>
+        
+        <div class="update-content">
+          <h5>プロフィール</h5>
+        </div>
+        
+        <div class="update-content">
+          <% if @user.image.blank? %>
+            <div class="center-icon"><%= image_tag "default_icon.jpg", class: "icon-center" %></div>
+          <% else %>
+           <div class="center-icon"><%= image_tag @user.image.url, class: "icon-center" %></div>
+          <% end %>
+        </div>
+
+        <div class="update-content">
+          <div class="row">
+            <%= f.label :image, "アイコン画像", class: "col-3 required-a" %>
+            <% if @user.image.blank? %>
+              <div class="field_with_errors"><%= f.file_field :image, class: "col-9" %></div>
+            <% else %>
+              <%= f.file_field :image, class: "col-9" %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="update-content">
+          <div class="row">
+            <%= f.label :name, "名前", class: "col-3 required-a" %>
+            <% if @user.name.blank? %>
+              <div class="field_with_errors"><%= f.text_field :name, placeholder: "名前を入力", class: "col-9 form-control" %></div>
+            <% else %>
+              <%= f.text_field :name, placeholder: "名前を入力", class: "col-9 form-control" %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="update-content">
+          <div class="row">
+            <%= f.label :content, "自己紹介", class: "col-3 required-a" %>
+            <% if @user.content.blank? %>
+              <div class="field_with_errors"><%= f.text_area :content, placeholder: "自己紹介を入力", class: "col-9 form-control" %></div>
+            <% else %>
+              <%= f.text_area :content, placeholder: "自己紹介を入力", class: "col-9 form-control" %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="update-content">
+          <%= f.submit "更新", class: "col-md-2 btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

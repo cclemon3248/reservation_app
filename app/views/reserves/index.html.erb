@@ -1,0 +1,30 @@
+<div class="reservations user-nav">
+<h4 class="pb-4">予約済みルーム一覧</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>ルーム画像</th>
+      <th>ルーム名</th>
+      <th>ルーム紹介</th>
+      <th>合計料金</th>
+      <th>開始日</th>
+      <th>終了日</th>
+      <th>予約確定日時</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @reserves.each do |reserve| %>
+      <tr>
+        <td class="image-td"><%= image_tag reserve.room.image.url, class: "reservations-image" %></td>
+        <td class="room-name"><%= link_to reserve.room.name,  room_path(reserve.room.id) %></td>
+        <td><%= reserve.room.content %></td>
+        <td class="reserve-price"><%= reserve.price %></td>
+        <td><%= reserve.start %></td>
+        <td><%= reserve.end %></td>
+        <td><%= reserve.created_at %></td>
+      </tr>
+    <% end %>  
+  </tbody>
+</table>
+</div>
